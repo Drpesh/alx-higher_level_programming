@@ -1,42 +1,54 @@
 #!/usr/bin/python3
-""" Defines a class square """
+# 0-square.py by Ehoneah Obed
+"""A module that defines a square """
 
 
 class Square:
-    """ This represents a square """
+    """A class that represents a square"""
+
     def __init__(self, size=0):
-        """Instantiate a new square.
+        """Initializing this square class
         Args:
-            size (int): The size of the new square.
+            size: represnets the size of the square defined
+        Raises:
+            TypeError: if size is not integer
+            ValueError: if size is less than zero
         """
+
+        if not isinstance(size, int):
+            raise TypeError('size must be an integer')
+        if size < 0:
+            raise ValueError('size must be >= 0')
+
         self.__size = size
 
     @property
     def size(self):
-        """ Get the current size of square. """
+        """Retrieves size of square"""
+
         return self.__size
 
     @size.setter
     def size(self, value):
-        """ set the current size of square """
         if not isinstance(value, int):
-            raise TypeError("size must be an integer")
-        elif value < 0:
-            raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
+            raise TypeError('size must be an integer')
+        if value < 0:
+            raise ValueError('size must be >= 0')
+        self.__size = value
 
     def area(self):
-        """ Method that returns current Square area """
-        return self.__size ** 2
+        """
+        Calculate area of the square
+        Returns: The square of the size
+        """
+
+        return (self.__size ** 2)
 
     def my_print(self):
-        """ method that prints to stdout the square with
-        character #
-        """
-        if self.__size == 0:
-            print("")
+        """print the square in # """
 
-        for row in range(0, self.__size):
-            for column in range(0, self.__size):
-                print("#", end="\n" if column == self.__size - 1 else "")
+        if self.__size == 0:
+            print()
+
+        for i in range(self.__size):
+            print("#" * self.__size)
